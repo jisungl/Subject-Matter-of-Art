@@ -345,6 +345,91 @@
     transform: rotate(45deg);
   }
 
+   /* ——— Case study strip ——— */
+  .casestudy {
+    margin: 56px 0;
+  }
+  .casestudy .cs-intro {
+    max-width: 64ch;
+    margin: 0 auto 28px;
+  }
+  .casestudy .cs-intro h3 {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 28px;
+    color: var(--ink);
+    margin: 0 0 12px;
+  }
+  .casestudy .cs-intro p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.6;
+  }
+  .cs-strip {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    padding: 8px 36px 24px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .cs-strip::-webkit-scrollbar { height: 8px; }
+  .cs-strip::-webkit-scrollbar-track { background: var(--paper-2); border-radius: 4px; }
+  .cs-strip::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 4px; }
+  .cs-strip::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  .cs-card {
+    flex: 0 0 auto;
+    width: 300px;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+  }
+  .cs-card .cs-imgwrap {
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fbf8f1;
+    border: 1px solid var(--rule);
+    padding: 16px;
+  }
+  .cs-card .cs-imgwrap img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    box-shadow: 0 2px 12px rgba(27,26,23,0.15);
+  }
+  .cs-card .cs-meta {
+    margin-top: 14px;
+  }
+  .cs-card .cs-title {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+  .cs-card .cs-artist {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 6px 0 8px;
+  }
+  .cs-card .cs-note {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 720px) {
+    .cs-strip { padding: 8px 18px 20px; }
+    .cs-card { width: 240px; }
+    .cs-card .cs-imgwrap { height: 260px; }
+  }
+
   /* ——— Endnotes ——— */
   sup.ref {
     font-family: "JetBrains Mono", monospace;
@@ -431,7 +516,7 @@
   <h1 class="title">How has the subject matter of <em>Western art</em> evolved across time and traditions?</h1>
   <p class="standfirst">Exploring six centuries of paintings, drawings, sculptures, and photographs from the National Gallery of Art.</p>
   <div class="byline">
-    <div>Author<span>Jisung Lee</span></div>
+    <div>Author<span>Jisung Lee, Ella Burlingame, <br>Waylisha Grey, Fey Nguyen</span></div>
     <div>Source<span class="italic">National Gallery of Art, open data</span></div>
     <div>Method<span class="italic">Quantitative survey</span></div>
     <div>Filed<span>May&nbsp;2026</span></div>
@@ -443,7 +528,7 @@
   <!-- Lede -->
   <div class="prose">
     <p class="lead first">What an artist chooses to depict is never purely an aesthetic decision. It is shaped by who commissions the work, what institutions expect from it, what technologies are available, and what the contemporary culture of the artist is like.</p>
-    <p>&#x201C;The forms of art are social facts,&#x201D; wrote Meyer Schapiro. &#x201C;The artist is both the agent and the product of history.&#x201D;<sup class="ref"><a href="#src-1">1</a></sup></p>
+    <p>&#x201C;Art-making,&#x201D; wrote Linda Nochlin, &#x201C;occurs in a social situation, is an integral element of the social structure, and is mediated and determined by specific and definable social institutions.&#x201D;<sup class="ref"><a href="#src-1">1</a></sup></p>
     <p>Subject matter, then, is not solely a creative preference so much as residue of material conditions. It simultaneously varies not just across time, but geography, tradition, and institutional context. No artwork exists in isolation. Every style, technique or subject carries traces of the world that produced it. At the same time, artists are not simply passive products of their environments. They are capable of reshaping values and perception to reorganize how society understands itself.</p>
     <p>This analysis explores these ideas based on the National Gallery of Art&#x2019;s catalogued works spanning the 1400s through the 2000s. The approach here is to track how the distribution of art themes move across different periods of time and social patterns.</p>
   </div>
@@ -464,7 +549,7 @@
   </figure>
 
   <div class="prose">
-    <p>The most obvious pattern in the data is the religous and portrait themes dominating the 1400s, with each accounting for roughly 40% of works. Religious artworks decline steadily throughout the 1600s and 1700s before flattening to nearly zero by the 1900s, while portraiture holds its share longer, staying at least close to 20% for the entire timeframe. These two themes alone accounted for over 80% of the NGA&#x2019;s earliest holdings, reflecting an era when art served institutional purposes. The church commissioned religious scenes, and wealthy patrons commissioned portraits. As these functions faded, the share spread outward to other themes.</p>
+    <p>The most obvious pattern in the data is the religous and portrait themes dominating the 1400s, with each accounting for roughly 40% of works. Religious artworks decline steadily throughout the 1600s and 1700s before flattening to nearly zero by the 1900s, while portraiture holds its share longer, staying at least close to 20% for the entire timeframe. These two themes alone accounted for over 80% of the NGA&#x2019;s earliest holdings, reflecting an era when art served institutional purposes. The church commissioned religious scenes, and wealthy patrons commissioned portraits. As these functions faded, the share spread outward to other themes.<sup class="ref"><a href="#src-2">2</a></sup></p>
     <p>The small multiples chart below isolates each theme to make individual tracing easier.</p>
   </div>
 
@@ -474,7 +559,7 @@
   </figure>
 
   <div class="prose">
-    <p>As religious and portrait artworks declined, themes like genre scenes, landscape, and architecture all gradually grew from the 1500s to the 1800s, diversifying subject matter. Landscape peaks around 1800 at roughly 18%, potentially coinciding with the Romantic era&#x2019;s emphasis on nature. Architecture spikes to nearly 30% around the 1700s, likely influenced by the Grand Tour tradition and its focus on classical ruins.<sup class="ref"><a href="#src-2">2</a></sup></p>
+    <p>As religious and portrait artworks declined, themes like genre scenes, landscape, and architecture all gradually grew from the 1500s to the 1800s, diversifying subject matter. Landscape peaks around 1800 at roughly 18%, potentially coinciding with the Romantic era&#x2019;s emphasis on nature.<sup class="ref"><a href="#src-3">3</a></sup> Architecture spikes to nearly 30% around the 1700s, likely influenced by the Grand Tour tradition and its focus on classical ruins.<sup class="ref"><a href="#src-4">4</a></sup></p>
     <p>The sharpest rise is in non-representational art, which starts at essentially 0% in the 1700s and rises to around 25% by the 2000s. Unlike any other theme with gradual shifts, it shows a late, steep arrival. Meanwhile, object and still life remain marginal across the entire 600-year span, never breaking over 5%, suggesting these themes have been secondary concerns in Western art regardless of era.</p>
   </div>
 
@@ -509,8 +594,8 @@
   <div class="prose">
     <p>Viewing the entire 1400s-2000s timeframe shows the high-level overview of the distribution in the whole collection. A couple of details stand out at the aggregate level. Across the full collection, American and French art look superficially similar, both leading with portraits at around 21-22%, but diverge in the second half of the categories &#x2014; American art has a 17% non-representational share, nearly doubling France&#x2019;s, reflecting Abstract Expressionism during post-war American movements. German art, interestingly, has 19% portrait and 18% architecture, but only 11% religious, lower than expected given Germany&#x2019;s ties to the Reformation and Christian artworks, which may reflect the NGA&#x2019;s collection skewing toward later German works.</p>
     <p>Zooming in on the 1400s-1500s, we see more variety in the distributions between schools. Religious content dominates Italian, Venetian, and Flemish art at well over 30%, while there are some anomalies like animal works accounting for over half of Flemish art, and the Danube splitting its majority between figure and object.</p>
-    <p>By the 1700s-1800s, religious works nearly vanished from all applicable schools, and themes like landscape, genre, and object surged, spreading the distribution more evenly across categories. The Enlightenment shifted intellectual culture away from religious authority toward reason, science, and secular life. Although the church was a dominant commissioner of art for centuries, by the 1700s, wealthy merchants, aristocrats, and eventually the middle class were primary buyers, who commissioned portraits, landscapes, genre scenes, and still lifes for private display.<sup class="ref"><a href="#src-2">2</a></sup></p>
-    <p>By the 1800s, and particularly the 1900s and on, there is a noticeable increase in non-representational arts, particularly from the Czech, Japanese, and Danish cultures. Czech non-representational work likely traces to the influence of artists like Frantisek Kupka, one of the earliest pioneers of pure abstract works.<sup class="ref"><a href="#src-4">4</a></sup> Japanese abstraction may trace to post-war movements, like the Gutai group, which emphasized radical material experimentation.<sup class="ref"><a href="#src-5">5</a></sup> Gutai artists were well-connected with American Abstract Expressionists, and their work was collected by Western institutions as part of the broader transatlantic cultural exchange of the postwar period.</p>
+    <p>By the 1700s-1800s, religious works nearly vanished from all applicable schools, and themes like landscape, genre, and object surged, spreading the distribution more evenly across categories. The Enlightenment shifted intellectual culture away from religious authority toward reason, science, and secular life. Although the church was a dominant commissioner of art for centuries, by the 1700s, wealthy merchants, aristocrats, and eventually the middle class were primary buyers, who commissioned portraits, landscapes, genre scenes, and still lifes for private display.<sup class="ref"><a href="#src-5">5</a></sup></p>
+    <p>By the 1800s, and particularly the 1900s and on, there is a noticeable increase in non-representational arts, particularly from the Czech, Japanese, and Danish cultures. Czech non-representational work likely traces to the influence of artists like Frantisek Kupka, one of the earliest pioneers of pure abstract works.<sup class="ref"><a href="#src-6">6</a></sup> Japanese abstraction may trace to post-war movements, like the Gutai group, which emphasized radical material experimentation. Gutai artists were well-connected with American Abstract Expressionists, and their work was collected by Western institutions as part of the broader transatlantic cultural exchange of the postwar period.<sup class="ref"><a href="#src-7">7</a></sup></p>
   </div>
 
   <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
@@ -533,7 +618,7 @@
   <div class="prose">
     <p>Compared to the pre-1900 period, Portraits in the modern era lost the most share, declining by 11.1 percentage points, which is notable considering it was the single most persistent theme across every century in the earlier charts. However, it didn&#x2019;t decrease because people stopped wanting portraits; rather, photography largely absorbed that function. Religious art continued its centuries-long decline as the Church&#x2019;s influence diminished further. Architecture dropped 7.9 percentage points due to the fading of the Grand Tour tradition, while animal and landscape each shed around 6 points.</p>
     <p>This chart differs from the previous ones in that it compares two pools of artworks: those created before 1900 and those created after 1900. For each theme, it calculates the difference in the share of that category&#x2019;s work between the two pools. For example, portraits losing 11.1 percentage points represents portraits accounting for roughly 23% of the artworks pre-1900, down to 12% post-1900. This is not the same as saying portraits &#x201C;declined by 11%,&#x201D; which would imply a much smaller change. It&#x2019;s a closed system in which every value on the chart sums to zero; an increase in a theme&#x2019;s share must come from another theme&#x2019;s loss (e.g., the 27.2-point increase in non-representational art is accounted for by the net changes across all other themes).</p>
-    <p>Non-representational art increased by more than 27 percentage points in the modern era, outpacing other categories by a wide margin. One of the most immediate causes is photography. Once cameras could capture likenesses, landscapes, and architectural views more accurately than paint could, artists lost their monopoly on visual documentation, leading to declines in portrait commissions. Photography didn&#x2019;t entirely kill representational art, but it removed the practical justification for much of it, freeing artists to create what paintings and drawings could do that a camera couldn&#x2019;t: expressing color, form, and emotion.<sup class="ref"><a href="#src-3">3</a></sup></p>
+    <p>Non-representational art increased by more than 27 percentage points in the modern era, outpacing other categories by a wide margin. One of the most immediate causes is photography. Once cameras could capture likenesses, landscapes, and architectural views more accurately than paint could, artists lost their monopoly on visual documentation, leading to declines in portrait commissions. Photography didn&#x2019;t entirely kill representational art, but it removed the practical justification for much of it, freeing artists to create what paintings and drawings could do that a camera couldn&#x2019;t: expressing color, form, and emotion.<sup class="ref"><a href="#src-3">8</a></sup></p>
     <p>It is worth noting that a significant portion of the NGA&#x2019;s collection is American art, one of the leading schools in non-representational art. It holds more non-representational art than the next five largest schools in the collection combined, which would seemingly skew the percentage points heavily. However, even after completely excluding American art from consideration, the general trend remains the same:</p>
   </div>
 
@@ -544,8 +629,64 @@
 
   <div class="prose">
     <p>Non-representational art (+17.5pp) still leads in increases by an overwhelming rate, accounting for a larger share than the other four gaining categories combined (+14.0pp), and portrait, architecture, and religion remain the three most diminished themes, suggesting a real shift towards non-representational art.</p>
-    <p>World War I helped accelerate this change, as the level of mass death and destruction shattered European cultural traditions, including representational art. Dadaism and Surrealism rejected rational order,<sup class="ref"><a href="#src-6">6</a></sup> and many artists coming out of wartime trauma found that conventional subject matter failed to convey their experience, turning to art that was &#x201C;nonsensical.&#x201D; After World War II, the center of the art world moved from Paris to New York, and Abstract Expressionism became a dominant movement in the 1950s. The United States government and cultural institutions promoted abstract art during the Cold War as a symbol of individualism and creative expression, in contrast to Soviet Socialist Realism. Abstraction became politically useful, accelerating its acceptance and market value.<sup class="ref"><a href="#src-7">7</a></sup><sup class="ref"><a href="#src-8">8</a></sup></p>
-    <p>The global spread of art education and international exhibitions in the mid-20th century took abstract art beyond its European and American origins. The Gutai group in Japan,<sup class="ref"><a href="#src-5">5</a></sup> Neo-Concretism in Brazil, and the Progressive Artists&#x2019; Group in India all developed their own version of abstraction, often blending them with local traditions.</p>
+    <p>World War I helped accelerate this change, as the level of mass death and destruction shattered European cultural traditions, including representational art. Dadaism and Surrealism rejected rational order, and many artists coming out of wartime trauma found that conventional subject matter failed to convey their experience, turning to art that was &#x201C;nonsensical.&#x201D;<sup class="ref"><a href="#src-6">9</a></sup> After World War II, the center of the art world moved from Paris to New York, and Abstract Expressionism became a dominant movement in the 1950s. The United States government and cultural institutions promoted abstract art during the Cold War as a symbol of individualism and creative expression, in contrast to Soviet Socialist Realism. Abstraction became politically useful, accelerating its acceptance and market value.<sup class="ref"><a href="#src-7">10</a></sup></p>
+  </div>
+  <div class="casestudy">
+    <div class="cs-intro">
+      <h3>Post-War Abstraction</h3>
+      <p>Artists across various traditions showed a shift towards abstraction as wartime  — a progression from gesture and geometry toward pure color and form, with subject matter falling away entirely.</p>
+    </div>
+    <div class="cs-strip">
+
+      <figure class="cs-card">
+        <div class="cs-imgwrap"><img src="images/ww1 non-rep/Blue Lithograph (Lithographic 'Blau') Wassily Kandinsky 1922.png" alt="artwork 1"></div>
+        <div class="cs-meta">
+          <div class="cs-title">Blue Lithograph (Lithographic 'Blau')</div>
+          <div class="cs-artist">Wassily Kandinsky · 1922</div>
+          <div class="cs-note">Two to three sentences on what this work shows and why it matters to the argument.</div>
+        </div>
+      </figure>
+
+      <figure class="cs-card">
+        <div class="cs-imgwrap"><img src="images/ww1 non-rep/The Forest Jean Arp 1916.png" alt="artwork 2"></div>
+        <div class="cs-meta">
+          <div class="cs-title">The Forest</div>
+          <div class="cs-artist">Jean Arp · 1916</div>
+          <div class="cs-note">Two to three sentences on what this work shows.</div>
+        </div>
+      </figure>
+
+      <figure class="cs-card">
+        <div class="cs-imgwrap"><img src="images/ww1 non-rep/Tableau No. IV 1924 Piet Mondrian.png" alt="artwork 3"></div>
+        <div class="cs-meta">
+          <div class="cs-title">Tableau No. IV</div>
+          <div class="cs-artist">Piet Mondrian · 1924</div>
+          <div class="cs-note">Two to three sentences on what this work shows.</div>
+        </div>
+      </figure>
+
+      <figure class="cs-card">
+        <div class="cs-imgwrap"><img src="images/ww1 non-rep/Geteilt (Divided) Wassily Kandinsky 1928.png" alt="artwork 4"></div>
+        <div class="cs-meta">
+          <div class="cs-title">Geteilt (Divided)</div>
+          <div class="cs-artist">Wassily Kandinsky · 1928</div>
+          <div class="cs-note">Two to three sentences on what this work shows.</div>
+        </div>
+      </figure>
+
+      <figure class="cs-card">
+        <div class="cs-imgwrap"><img src="images/ww1 non-rep/11 configurations Jean Arp 1945.png" alt="artwork 5"></div>
+        <div class="cs-meta">
+          <div class="cs-title">11 Configurations</div>
+          <div class="cs-artist">Jean Arp · 1945</div>
+          <div class="cs-note">Two to three sentences on what this work shows.</div>
+        </div>
+      </figure>
+
+    </div>
+  </div>
+  <div class="prose">
+    <p>The global spread of art education and international exhibitions in the mid-20th century took abstract art beyond its European and American origins. The Gutai group in Japan, Neo-Concretism in Brazil, and the Progressive Artists&#x2019; Group in India all developed their own version of abstraction, often blending them with local traditions.<sup class="ref"><a href="#src-11">11</a></sup></p>
   </div>
 
   <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
@@ -553,14 +694,17 @@
   <div class="sources">
     <h3>Sources</h3>
     <ol>
-      <li id="src-1">Meyer Schapiro, &#x201C;Style&#x201D; (1953), in <em>Theory and Philosophy of Art: Style, Artist, and Society</em> (George Braziller, 1994).</li>
-      <li id="src-2">Britannica, &#x201C;Grand Tour.&#x201D; <a href="https://www.britannica.com/topic/grand-tour" target="_blank" rel="noopener">britannica.com/topic/grand-tour</a>. See also: The Metropolitan Museum of Art, &#x201C;The Grand Tour.&#x201D; <a href="https://www.metmuseum.org/essays/the-grand-tour" target="_blank" rel="noopener">metmuseum.org/essays/the-grand-tour</a>.</li>
-      <li id="src-3">JSTOR Daily, &#x201C;Did Photography Really Kill Portrait Painting?&#x201D; <a href="https://daily.jstor.org/did-photography-really-kill-portrait-painting/" target="_blank" rel="noopener">daily.jstor.org</a>.</li>
-      <li id="src-4">Britannica, &#x201C;Franti&#x0161;ek Kupka.&#x201D; <a href="https://www.britannica.com/biography/Frantisek-Kupka" target="_blank" rel="noopener">britannica.com/biography/Frantisek-Kupka</a>. See also: The Art Story, &#x201C;Franti&#x0161;ek Kupka.&#x201D; <a href="https://www.theartstory.org/artist/kupka-frantisek/" target="_blank" rel="noopener">theartstory.org/artist/kupka-frantisek</a>.</li>
-      <li id="src-5">The Art Story, &#x201C;The Gutai Group.&#x201D; <a href="https://www.theartstory.org/movement/gutai/" target="_blank" rel="noopener">theartstory.org/movement/gutai</a>. See also: Tate, &#x201C;Gutai.&#x201D; <a href="https://www.tate.org.uk/art/art-terms/g/gutai" target="_blank" rel="noopener">tate.org.uk/art/art-terms/g/gutai</a>.</li>
-      <li id="src-6">Britannica, &#x201C;Dada: Definition &amp; History.&#x201D; <a href="https://www.britannica.com/art/Dada" target="_blank" rel="noopener">britannica.com/art/Dada</a>.</li>
-      <li id="src-7">Eva Cockcroft, &#x201C;Abstract Expressionism, Weapon of the Cold War,&#x201D; <em>Artforum</em>, June 1974. <a href="https://www.artforum.com/features/abstract-expressionism-weapon-of-the-cold-war-214234/" target="_blank" rel="noopener">artforum.com</a>.</li>
-      <li id="src-8">Open Culture, &#x201C;How the CIA Secretly Funded Abstract Expressionism During the Cold War.&#x201D; <a href="https://www.openculture.com/2013/04/how_the_cia_turned_american_abstract_expressionism_into_cold_war_propaganda.html" target="_blank" rel="noopener">openculture.com</a>.</li>
+      <li id="src-1">Linda Nochlin, &#x201C;Why Have There Been No Great Women Artists?&#x201D; (ARTnews, 1971).</li>
+      <li id="src-2">Encyclopedia Britannica, &#x201C;<a href="https://www.britannica.com/art/Renaissance-art" target="_blank" rel="noopener">Renaissance Art</a>.&#x201D;</li>
+      <li id="src-3">Kathryn Calley Galitz, &#x201C;<a href="https://www.metmuseum.org/toah/hd/roma/hd_roma.htm" target="_blank" rel="noopener">Romanticism</a>,&#x201D; <em>Heilbrunn Timeline of Art History</em> (The Metropolitan Museum of Art, 2004).</li>      
+      <li id="src-4">Britannica, &#x201C;Grand Tour.&#x201D; <a href="https://www.britannica.com/topic/grand-tour" target="_blank" rel="noopener">britannica.com/topic/grand-tour</a>. See also: The Metropolitan Museum of Art, &#x201C;The Grand Tour.&#x201D; <a href="https://www.metmuseum.org/essays/the-grand-tour" target="_blank" rel="noopener">metmuseum.org/essays/the-grand-tour</a>.</li>
+      <li id="src-5">Jean Sorabella, &#x201C;<a href="https://www.metmuseum.org/toah/hd/grtr/hd_grtr.htm" target="_blank" rel="noopener">The Grand Tour</a>,&#x201D; <em>Heilbrunn Timeline of Art History</em> (The Metropolitan Museum of Art, 2003).</li>
+      <li id="src-6">Solomon R. Guggenheim Museum, &#x201C;<a href="https://www.guggenheim.org/artwork/artist/frantisek-kupka" target="_blank" rel="noopener">Franti&#x0161;ek Kupka</a>,&#x201D; Collection Online. Accessed May 2026.</li>      
+      <li id="src-7">Solomon R. Guggenheim Museum, &#x201C;<a href="https://www.guggenheim.org/exhibition/gutai-splendid-playground" target="_blank" rel="noopener">Gutai: Splendid Playground</a>,&#x201D; Exhibition Overview. Accessed May 2026.</li>
+      <li id="src-8">Malcolm Daniel, &#x201C;<a href="https://www.metmuseum.org/toah/hd/phpt/hd_phpt.htm" target="_blank" rel="noopener">Photography and the Art of Painting</a>,&#x201D; <em>Heilbrunn Timeline of Art History</em> (The Metropolitan Museum of Art, 2004).</li>
+      <li id="src-9">The Museum of Modern Art, &#x201C;<a href="https://www.moma.org/collection/terms/dada" target="_blank" rel="noopener">Dada</a>,&#x201D; MoMA Collection Terms.</li>
+      <li id="src-10">Frances Stonor Saunders, &#x201C;<a href="https://www.independent.co.uk/news/world/modern-art-was-cia-weapon-1578808.html" target="_blank" rel="noopener">Modern art was CIA 'weapon'</a>,&#x201D; <em>The Independent</em>, October 21, 1995.</li>
+      <li id="src-11">Okwui Enwezor et al., eds., <em>Postwar: Art Between the Pacific and the Atlantic, 1945-1965</em> (Prestel, 2016).</li>
     </ol>
   </div>
 
