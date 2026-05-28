@@ -22,6 +22,29 @@
 
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); }
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ink-soft) var(--paper-2);
+  }
+  html::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  html::-webkit-scrollbar-track {
+    background: var(--paper-2);
+    border-left: 1px solid var(--rule);
+  }
+  html::-webkit-scrollbar-thumb {
+    background: var(--ink-soft);
+    border: 2px solid var(--paper-2);
+    border-radius: 0;
+  }
+  html::-webkit-scrollbar-thumb:hover {
+    background: var(--ink);
+  }
+  html::-webkit-scrollbar-corner {
+    background: var(--paper-2);
+  }
   body {
     font-family: "Source Serif 4", Georgia, serif;
     font-size: 19px;
@@ -30,7 +53,7 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* ——— Masthead ——— */
+  /* masthead */
   .masthead {
     border-bottom: 1px solid var(--ink);
     padding: 18px 36px 14px;
@@ -58,7 +81,7 @@
   }
   .masthead .meta { display: flex; gap: 28px; }
 
-  /* ——— Hero / title block ——— */
+  /* title */
   .hero {
     max-width: 1180px;
     margin: 0 auto;
@@ -128,14 +151,13 @@
   }
   .byline div span.italic { font-style: italic; }
 
-  /* ——— Article ——— */
+  /* article */
   article {
     max-width: 1180px;
     margin: 0 auto;
     padding: 56px 36px 96px;
   }
 
-  /* Narrow reading column for prose */
   .prose {
     max-width: 64ch;
     margin: 0 auto;
@@ -152,7 +174,6 @@
   }
   .prose p.lead + p { text-indent: 0; }
 
-  /* First paragraph drop cap */
   .prose .first::first-letter {
     font-family: "Cormorant Garamond", serif;
     font-weight: 500;
@@ -163,7 +184,7 @@
     color: var(--ink);
   }
 
-  /* Section heading */
+  /* section heading */
   .section-head {
     max-width: 64ch;
     margin: 96px auto 40px;
@@ -199,7 +220,7 @@
   }
   .section-head h2 em { font-style: italic; color: var(--ink-soft); }
 
-  /* Figure / chart blocks: full width within article */
+  /* figure blocks */
   figure.chart {
     margin: 56px 0;
     padding: 28px 28px 24px;
@@ -242,7 +263,7 @@
   figure.chart .obs-host > div {
     margin: 0 auto;
   }
-  /* Observable Plot SVGs */
+  /* svgs */
   figure.chart svg {
     background: transparent !important;
     max-width: 100%;
@@ -259,7 +280,7 @@
     line-height: 1.55;
   }
 
-  /* Pull quote */
+  /* quote */
   .pullquote {
     max-width: 64ch;
     margin: 56px auto;
@@ -283,7 +304,7 @@
     color: var(--muted);
   }
 
-  /* Controls row for school chart */
+  /* controls for school chart */
   .controls {
     display: flex;
     gap: 28px;
@@ -302,7 +323,7 @@
     margin-bottom: 6px;
   }
 
-  /* Footer credit */
+  /* footer */
   footer.credit {
     max-width: 1180px;
     margin: 0 auto;
@@ -325,7 +346,7 @@
   }
   footer.credit a:hover { border-color: var(--ink); }
 
-  /* Decorative ornament */
+  /* ornament */
   .ornament {
     display: flex;
     justify-content: center;
@@ -345,7 +366,7 @@
     transform: rotate(45deg);
   }
 
-   /* ——— Case study strip ——— */
+   /* image strip */
   .casestudy {
     margin: 56px 0;
   }
@@ -430,7 +451,7 @@
     .cs-card .cs-imgwrap { height: 260px; }
   }
 
-  /* ——— Endnotes ——— */
+  /* Endnotes */
   sup.ref {
     font-family: "JetBrains Mono", monospace;
     font-size: 10px;
@@ -533,7 +554,7 @@
     <p>This analysis explores these ideas based on the National Gallery of Art&#x2019;s catalogued works spanning the 1400s through the 2000s. The approach here is to track how the distribution of art themes move across different periods of time and social patterns.</p>
   </div>
 
-  <!-- ——— SECTION I ——— -->
+  <!-- section 1 -->
   <div class="section-head">
     <div class="roman">I</div>
     <h2>What is the overall arc of subject matter <em>across centuries?</em></h2>
@@ -565,7 +586,7 @@
 
   <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- ——— SECTION II ——— -->
+  <!-- section 2 -->
   <div class="section-head">
     <div class="roman">II</div>
     <h2>How do different artistic schools depict subject matter <em>across time?</em></h2>
@@ -658,7 +679,7 @@
 
   <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
-  <!-- ——— SECTION III ——— -->
+  <!-- section 3 -->
   <div class="section-head">
     <div class="roman">III</div>
     <h2>The rise in <em>non-representational</em> art.</h2>
