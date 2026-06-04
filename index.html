@@ -1431,7 +1431,6 @@
     main: 'Subject Matter of Western Art — A Quantitative Survey',
     note: 'Note on Data — N.G.A. Studies in the Collection'
   };
-  var URLS = { main: './', note: 'note' };
 
   var views   = { main: document.getElementById('view-main'), note: document.getElementById('view-note') };
   var navNote = document.getElementById('nav-to-note');
@@ -1447,6 +1446,14 @@
       navNote.classList.remove('view--hidden');
       navBack.classList.add('view--hidden');
     }
+  }
+
+  function showView(target) {
+    views[target].classList.remove('view--hidden');
+    views[target === 'note' ? 'main' : 'note'].classList.add('view--hidden');
+    current = target;
+    updateNav(target);
+    document.title = TITLES[target];
   }
 
   function navigateTo(target, push) {
@@ -1474,7 +1481,8 @@
     });
 
     if (push) {
-      history.pushState({ view: target }, '', URLS[target]);
+      var url = target === 'note' ? 'note' : './';
+      history.pushState({ view: target }, '', url);
       document.title = TITLES[target];
     }
   }
@@ -1485,17 +1493,16 @@
 
   window.addEventListener('popstate', function (e) {
     var target = (e.state && e.state.view) ? e.state.view : 'main';
-    navigateTo(target, false);
+    if (target !== current) navigateTo(target, false);
     document.title = TITLES[target];
-    updateNav(target);
   });
-
-  var path = window.location.pathname;
-  if (path.slice(-5) === '/note' || path.slice(-10) === '/note.html') {
-    views.note.classList.remove('view--hidden');
-    views.main.classList.add('view--hidden');
-    current = 'note';
-    updateNav('note');
+  var params = new URLSearchParams(location.search);
+  var redirected = params.get('r');
+  if (redirected === 'note') {
+    history.replaceState({ view: 'note' }, '', 'note');
+    showView('note');
+  } else if (location.pathname.slice(-5) === '/note') {
+    showView('note');
   }
 }());
 </script>
