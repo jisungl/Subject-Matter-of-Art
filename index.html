@@ -79,7 +79,75 @@
     color: var(--ink);
     line-height: 1;
   }
-  .masthead .meta { display: flex; gap: 28px; }
+  .masthead .meta { display: flex; gap: 28px; align-items: baseline; }
+  .masthead-link {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .masthead-link:hover { color: var(--ink); border-color: var(--ink); }
+
+  /* note on data link */
+  .note-link-block {
+    max-width: 64ch;
+    margin: 52px auto 0;
+  }
+  .note-link-block a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: #fbf8f1;
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .note-link-block a::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 14px; height: 14px;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+  }
+  .note-link-block a::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 14px; height: 14px;
+    border-bottom: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+  }
+  .note-link-block a:hover { border-color: var(--ink-soft); }
+  .note-link-block .nl-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .note-link-block .nl-title {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .note-link-block .nl-arrow {
+    font-style: normal;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    color: var(--accent);
+  }
 
   /* title */
   .hero {
@@ -512,6 +580,216 @@
   }
   .sources ol li a:hover { border-color: var(--ink); color: var(--ink); }
 
+  /* collapsible */
+  .collapse-case {
+    margin: 56px 0;
+    border: 1px solid var(--rule);
+    position: relative;
+    background: #fbf8f1;
+  }
+  .collapse-case::before {
+    content: "";
+    position: absolute;
+    top: -1px; left: -1px;
+    width: 22px; height: 22px;
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .collapse-case::after {
+    content: "";
+    position: absolute;
+    bottom: -1px; right: -1px;
+    width: 22px; height: 22px;
+    border-bottom: 1px solid var(--ink);
+    border-right: 1px solid var(--ink);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .collapse-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 22px 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    text-align: left;
+    transition: background 0.15s;
+  }
+  .collapse-trigger:hover { background: rgba(205, 198, 182, 0.25); }
+  .collapse-trigger-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .collapse-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .collapse-title {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .collapse-sub {
+    font-family: "Source Serif 4", serif;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .collapse-toggle-icon {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+    color: var(--accent);
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+    transition: transform 0.3s ease;
+    line-height: 1;
+    user-select: none;
+  }
+  .collapse-case[data-open="true"] .collapse-toggle-icon {
+    transform: rotate(45deg);
+  }
+  .collapse-body {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.55s ease;
+  }
+  .collapse-case[data-open="true"] .collapse-body {
+    max-height: 9000px;
+  }
+  .collapse-body-inner {
+    border-top: 1px dashed var(--rule);
+    padding-bottom: 32px;
+  }
+  .cs-period { padding-top: 32px; }
+  .cs-period + .cs-period {
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+  }
+  .cs-period-head {
+    max-width: 64ch;
+    margin: 0 auto 20px;
+    padding: 0 28px;
+  }
+  .cs-period-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .cs-period-head h4 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .cs-period-head p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin: 0;
+    line-height: 1.65;
+  }
+  .cs-period-subhead {
+    padding: 20px 36px 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .cs-period-sublabel {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .cs-period-subhead::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .collapse-case .cs-strip {
+    overflow-x: visible;
+    scroll-snap-type: none;
+    flex-wrap: wrap;
+    padding: 8px 36px 24px;
+  }
+  .collapse-case .cs-strip .cs-card {
+    flex: 1 1 220px;
+    width: auto;
+    scroll-snap-align: none;
+    min-width: 0;
+  }
+  @media (max-width: 720px) {
+    .collapse-case .cs-strip { padding: 8px 20px 20px; }
+  }
+
+  .cs-imgwrap--placeholder {
+    background: var(--paper-2);
+  }
+  .cs-imgwrap--placeholder a.cs-placeholder-link-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    padding: 16px;
+  }
+  .cs-imgwrap--nolink {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+  }
+  .cs-placeholder-title {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-soft);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .cs-placeholder-sub {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+  .cs-placeholder-nga {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    margin-top: 6px;
+  }
+
   /* Mobile */
   @media (max-width: 720px) {
     body { font-size: 17px; }
@@ -530,6 +808,9 @@
     <span class="mark">N.G.A.</span>
     <span>Studies in the Collection</span>
   </div>
+  <div class="meta">
+    <a href="note.html" class="masthead-link">Note</a>
+  </div>
 </header>
 
 <section class="hero">
@@ -537,7 +818,7 @@
   <h1 class="title">How has the subject matter of <em>Western art</em> evolved across time and traditions?</h1>
   <p class="standfirst">Exploring six centuries of paintings, drawings, sculptures, and photographs from the National Gallery of Art.</p>
   <div class="byline">
-    <div>Author<span>Jisung Lee, Ella Burlingame, <br>Waylisha Grey, Fey Nguyen</span></div>
+    <div>Author<span>Jisung Lee, Ella Burlingame, <br>Waylisha Grey, Fey Nguyen, <br> Cristofer Prado</span></div>
     <div>Source<span class="italic">National Gallery of Art, open data</span></div>
     <div>Method<span class="italic">Quantitative survey</span></div>
     <div>Filed<span>May&nbsp;2026</span></div>
@@ -668,6 +949,7 @@
       </div>
     </div>
     <div class="obs-host"><div id="observablehq-themeDistribution-055d216f"></div></div>
+    <figcaption>Note: "Theme" here is the attribute used by the NGA curators to indicate the origin of the artwork.</figcaption>
   </figure>
 
   <div class="prose">
@@ -754,8 +1036,8 @@
 
   <div class="prose">
     <p>Compared to the pre-1900 period, Portraits in the modern era lost the most share, declining by 11.1 percentage points, which is notable considering it was the single most persistent theme across every century in the earlier charts. However, it didn&#x2019;t decrease because people stopped wanting portraits; rather, photography largely absorbed that function. Religious art continued its centuries-long decline as the Church&#x2019;s influence diminished further. Architecture dropped 7.9 percentage points due to the fading of the Grand Tour tradition, while animal and landscape each shed around 6 points.</p>
-    <p>This chart differs from the previous ones in that it compares two pools of artworks: those created before 1900 and those created after 1900. For each theme, it calculates the difference in the share of that category&#x2019;s work between the two pools. For example, portraits losing 11.1 percentage points represents portraits accounting for roughly 23% of the artworks pre-1900, down to 12% post-1900. This is not the same as saying portraits &#x201C;declined by 11%,&#x201D; which would imply a much smaller change. It&#x2019;s a closed system in which every value on the chart sums to zero; an increase in a theme&#x2019;s share must come from another theme&#x2019;s loss (e.g., the 27.2-point increase in non-representational art is accounted for by the net changes across all other themes).</p>
-    <p>Non-representational art increased by more than 27 percentage points in the modern era, outpacing other categories by a wide margin. One of the most immediate causes is photography. Once cameras could capture likenesses, landscapes, and architectural views more accurately than paint could, artists lost their monopoly on visual documentation, leading to declines in portrait commissions. Photography didn&#x2019;t entirely kill representational art, but it removed the practical justification for much of it, freeing artists to create what paintings and drawings could do that a camera couldn&#x2019;t: expressing color, form, and emotion.<sup class="ref"><a href="#src-3">8</a></sup></p>
+    <p>This chart differs from the previous ones in that it compares two pools of artworks: those created - and those created after 1900. For each theme, it calculates the difference in the share of that category&#x2019;s work between the two pools. For example, portraits losing 11.1 percentage points represents portraits accounting for roughly 23% of the artworks pre-1900, down to 12% post-1900. This is not the same as saying portraits &#x201C;declined by 11%,&#x201D; which would imply a much smaller change. It&#x2019;s a closed system in which every value on the chart sums to zero; an increase in a theme&#x2019;s share must come from another theme&#x2019;s loss (e.g., the 27.2-point increase in non-representational art is accounted for by the net changes across all other themes).</p>
+    <p>Non-representational art increased by more than 27 percentage points in the modern era, outpacing other categories by a wide margin. One of the most immediate causes is photography. Once cameras could capture likenesses, landscapes, and architectural views more accurately than paint could, artists lost their monopoly on visual documentation, leading to declines in portrait commissions. Photography didn&#x2019;t entirely kill representational art, but it removed the practical justification for much of it, freeing artists to create what paintings and drawings could do that a camera couldn&#x2019;t: expressing color, form, and emotion.<sup class="ref"><a href="#src-8">8</a></sup></p>
     <p>It is worth noting that a significant portion of the NGA&#x2019;s collection is American art, one of the leading schools in non-representational art. It holds more non-representational art than the next five largest schools in the collection combined, which would seemingly skew the percentage points heavily. However, even after completely excluding American art from consideration, the general trend remains the same:</p>
   </div>
 
@@ -766,8 +1048,203 @@
 
   <div class="prose">
     <p>Non-representational art (+17.5pp) still leads in increases by an overwhelming rate, accounting for a larger share than the other four gaining categories combined (+14.0pp), and portrait, architecture, and religion remain the three most diminished themes, suggesting a real shift towards non-representational art.</p>
-    <p>World War I helped accelerate this change, as the level of mass death and destruction shattered European cultural traditions, including representational art. Dadaism and Surrealism rejected rational order, and many artists coming out of wartime trauma found that conventional subject matter failed to convey their experience, turning to art that was &#x201C;nonsensical.&#x201D;<sup class="ref"><a href="#src-6">9</a></sup> After World War II, the center of the art world moved from Paris to New York, and Abstract Expressionism became a dominant movement in the 1950s. The United States government and cultural institutions promoted abstract art during the Cold War as a symbol of individualism and creative expression, in contrast to Soviet Socialist Realism. Abstraction became politically useful, accelerating its acceptance and market value.<sup class="ref"><a href="#src-7">10</a></sup></p>
+    <p>World War I helped accelerate this change, as the level of mass death and destruction shattered European cultural traditions, including representational art. Dadaism and Surrealism rejected rational order, and many artists coming out of wartime trauma found that conventional subject matter failed to convey their experience, turning to art that was &#x201C;nonsensical.&#x201D;<sup class="ref"><a href="#src-9">9</a></sup> After World War II, the center of the art world moved from Paris to New York, and Abstract Expressionism became a dominant movement in the 1950s. The United States government and cultural institutions promoted abstract art during the Cold War as a symbol of individualism and creative expression, in contrast to Soviet Socialist Realism. Abstraction became politically useful, accelerating its acceptance and market value.<sup class="ref"><a href="#src-10">10</a></sup></p>
   </div>
+  <div class="collapse-case" data-open="false">
+    <button class="collapse-trigger" aria-expanded="false" onclick="toggleNonrepCase(this)">
+      <div class="collapse-trigger-meta">
+        <span class="collapse-tag">Case Study</span>
+        <span class="collapse-title">Non-Representational Art Across Schools and Time</span>
+        <span class="collapse-sub">How do the subject, stylistic choices, and popularity of non-representational art change over time?</span>
+      </div>
+      <span class="collapse-toggle-icon" aria-hidden="true">+</span>
+    </button>
+    <div class="collapse-body">
+      <div class="collapse-body-inner">
+
+        <!-- 1400s–1800 -->
+        <div class="cs-period">
+          <div class="cs-period-head">
+            <span class="cs-period-label">1400s – 1800</span>
+            <h4>Religious Artifacts and Ornamentation</h4>
+            <p>Through the 1400s to 1800, non-representational work in the collection is sparse and falls almost entirely into two categories: religious artifacts and ornamentation. The church's influence extends even into non-figural objects; items carry theological meaning without directly depicting sacred figures. Alongside these, an ornamental tradition ran from the Renaissance through the Baroque era. The printing press, introduced around 1440, contributed to the rise of ornate patterns in books and women's embroidery patterns.<sup class="ref"><a href="#src-11">11</a></sup></p>
+          </div>
+          <div class="cs-strip">
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/christ carrying the cross.png" alt="Christ Carrying the Cross">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Christ Carrying the Cross</div>
+                <div class="cs-artist">No attributed artist · c. 1480 · German school</div>
+                <div class="cs-note">An artifact of devotional practice rather than figurative representation. Faith could be expressed in symbol as readily as in painted figures.</div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/sixth knot.png" alt="Sixth Knot">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Sixth Knot</div>
+                <div class="cs-artist">No attributed artist · c. 1490/1500</div>
+                <div class="cs-note">Renaissance-period ornamental artwork. Emphasis on clear lines as well as geometry, balance, and symmetry. It's simple and clear approach reflects other Renaissance ideals of humanism.<sup class="ref"><a href="#src-12">12</a></sup></div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/cartouche.png" alt="Cartouche">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Cartouche</div>
+                <div class="cs-artist">François Collignon · 1646</div>
+                <div class="cs-note">Baroque artwork introduced exaggerated movement and soft shadow. Decorative forms were expected to provoke an emotional response.<sup class="ref"><a href="#src-13">13</a></sup></div>
+              </div>
+            </figure>
+
+          </div>
+        </div>
+
+        <!-- 1800s–1900s -->
+        <div class="cs-period">
+          <div class="cs-period-head">
+            <span class="cs-period-label">1800s – 1900s</span>
+            <h4>School Divergence</h4>
+            <p>By the nineteenth century, non-representational output grows in scale and diversity. We see changes in distinct styles between schools. The French lean toward abstraction with simplified, shape-focused approach. The German school produces work that is deliberately "unfinished" and minimalistic. British holdings, by contrast, remain primarily ornamental, mirroring the earlier works from the 1400s-1600s. Much of the arts during this time responds to the industrial revolution from the late-18th to early-19th century. With mass production of materials like textiles, artists began questioning the relationship between humans and objects.<sup class="ref"><a href="#src-14">14</a></sup></p>
+          </div>
+          <div class="cs-strip">
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/abstraction.png" alt="Abstraction">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Abstraction</div>
+                <div class="cs-artist">Roger de La Fresnaye · 19th century · French school</div>
+                <div class="cs-note">The simplification of the scene and objects, flattening objects and reducing the composition to shape, serves as a response to industrialization and questions involving materialism in human life.<sup class="ref"><a href="#src-15">15</a></sup></div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/begonnene skizz.png" alt="Begonnene Skizze">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Begonnene Skizze (Unfinished Sketch)</div>
+                <div class="cs-artist">Max Beckmann · 19th century · German school</div>
+                <div class="cs-note">German works of this period often appears deliberately unfinished. It tests what a drawing can withhold while still constituting a work.</div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/the grammar of ornament.png" alt="The Grammar of Ornament">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">The Grammar of Ornament (pg. 2)</div>
+                <div class="cs-artist">Owen Jones (author) / Francis Bedford (lithographer) · 1856 · British school</div>
+                <div class="cs-note">As the industrial revolution made patterned goods available by machine, handcrafted ornamentation became less common.</div>
+              </div>
+            </figure>
+
+          </div>
+        </div>
+
+        <!-- Period 3: 1900s–Present -->
+        <div class="cs-period">
+          <div class="cs-period-head">
+            <span class="cs-period-label">1900s – Present</span>
+            <h4>Convergence and Distinction</h4>
+            <p>From 1900 onward, non-representationl art expands sharply. The American school enters the non-representational record for the first time and quickly accounts for a significant share. Schools that had previously existed in relative isolation begin to influence one another. Minimalism circulates across the American, Dutch, and Swiss schools: primary colors, flat geometry, stripped-down form. German draftsmanship keeps its characteristic economy of line, traceable from the nineteenth century to the 1980s. The Japanese school develops its own visual identity, deploying brushwork and patterning rooted in domestic tradition. The Mexican school works in softer media and more figural compositions, distinguishing itself even within the non-representational category.</p>
+          </div>
+
+          <div class="cs-period-subhead">
+            <span class="cs-period-sublabel">Schools in Dialogue</span>
+          </div>
+          <div class="cs-strip">
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/twin portals.png" alt="Twin Portals: Homage to the Twin Towers">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Twin Portals: Homage to the Twin Towers</div>
+                <div class="cs-artist">Richard Anuszkiewicz · 2003 · American school</div>
+                <div class="cs-note">Bold primary colors and geometric symmetry characterize this American school work. The approach — stark, simple, direct — circulated internationally in the mid-to-late twentieth century, appearing in closely related forms across the American, Dutch, and Swiss schools.</div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/thinking and seeing piece.png" alt="Thinking and Seeing Piece 2/3">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Thinking and Seeing Piece 2/3</div>
+                <div class="cs-artist">Carel Balth · 1975 · Dutch school</div>
+                <div class="cs-note">The Dutch school's engagement with minimalism runs parallel to — and in direct exchange with — American abstraction of the same period. Primary colors and geometric structures appear in both traditions without one simply following the other.</div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/untitled.png" alt="Untitled">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Untitled</div>
+                <div class="cs-artist">Max Bill · 1965 · Swiss school</div>
+                <div class="cs-note">Swiss concrete art developed its own version of minimal abstraction, emphasizing mathematical precision. Bill's work shares a visual grammar with American and Dutch contemporaries, reflecting the transatlantic circulation of form in the postwar period.</div>
+              </div>
+            </figure>
+
+          </div>
+
+          <div class="cs-period-subhead">
+            <span class="cs-period-sublabel">Schools in Distinction</span>
+          </div>
+          <div class="cs-strip">
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/plate12.png" alt="Plate 12">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Plate 12</div>
+                <div class="cs-artist">Jürgen Partenheimer · 1983 · German school</div>
+                <div class="cs-note">German draftsmanship maintains an economy of line traceable from the nineteenth century onward. This 1983 work continues the provisional, understated quality that distinguishes the German school's non-representational output from its more coloristically bold American and Dutch counterparts.</div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/rappa-shu.png" alt="Rappa-Shu (Trumpeter) IV">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Rappa-Shu (Trumpeter) IV</div>
+                <div class="cs-artist">Tadashi Nakayama · 1959 · Japanese school</div>
+                <div class="cs-note">The Japanese school develops its non-representational work from within a distinct visual tradition, deploying brushwork and patterning rooted in domestic practice. The result is a grammar that resists easy assimilation into the mainstream transatlantic narrative.</div>
+              </div>
+            </figure>
+
+            <figure class="cs-card">
+              <div class="cs-imgwrap">
+                <img src="images/casestudy/deux fils.png" alt="Deux Fils">
+              </div>
+              <div class="cs-meta">
+                <div class="cs-title">Deux Fils</div>
+                <div class="cs-artist">Rufino Tamayo · 1964 · Mexican school</div>
+                <div class="cs-note">The Mexican school's use of softer media and figural composition sets it apart within the non-representational category. Even in abstraction, traces of bodily form and material specificity remain, distinguishing it from the flatter, more reductive styles circulating elsewhere.</div>
+              </div>
+            </figure>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <div class="casestudy">
     <div class="cs-intro">
       <h3>Post-War Abstraction</h3>
@@ -823,7 +1300,7 @@
     </div>
   </div>
   <div class="prose">
-    <p>The global spread of art education and international exhibitions in the mid-20th century took abstract art beyond its European and American origins. The Gutai group in Japan, Neo-Concretism in Brazil, and the Progressive Artists&#x2019; Group in India all developed their own version of abstraction, often blending them with local traditions.<sup class="ref"><a href="#src-11">11</a></sup></p>
+    <p>The global spread of art education and international exhibitions in the mid-20th century took abstract art beyond its European and American origins. The Gutai group in Japan, Neo-Concretism in Brazil, and the Progressive Artists&#x2019; Group in India all developed their own version of abstraction, often blending them with local traditions.<sup class="ref"><a href="#src-16">16</a></sup></p>
   </div>
 
   <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
@@ -835,26 +1312,47 @@
       <li id="src-2">Encyclopedia Britannica, &#x201C;<a href="https://www.britannica.com/art/Renaissance-art" target="_blank" rel="noopener">Renaissance Art</a>.&#x201D;</li>
       <li id="src-3">Kathryn Calley Galitz, &#x201C;<a href="https://www.metmuseum.org/toah/hd/roma/hd_roma.htm" target="_blank" rel="noopener">Romanticism</a>,&#x201D; <em>Heilbrunn Timeline of Art History</em> (The Metropolitan Museum of Art, 2004).</li>      
       <li id="src-4">Britannica, &#x201C;Grand Tour.&#x201D; <a href="https://www.britannica.com/topic/grand-tour" target="_blank" rel="noopener">britannica.com/topic/grand-tour</a>. See also: The Metropolitan Museum of Art, &#x201C;The Grand Tour.&#x201D; <a href="https://www.metmuseum.org/essays/the-grand-tour" target="_blank" rel="noopener">metmuseum.org/essays/the-grand-tour</a>.</li>
-      <li id="src-5">Jean Sorabella, &#x201C;<a href="https://www.metmuseum.org/toah/hd/grtr/hd_grtr.htm" target="_blank" rel="noopener">The Grand Tour</a>,&#x201D; <em>Heilbrunn Timeline of Art History</em> (The Metropolitan Museum of Art, 2003).</li>
+      <li id="src-5">Jeanne S. M. Willette, &#x201C;<a href="https://arthistoryunstuffed.com/enlightenment-art-public/" target="_blank" rel="noopener">The Enlightenment and the Art Public</a>,&#x201D; <em>Art History Unstuffed</em>, 2009.</li>
       <li id="src-6">Solomon R. Guggenheim Museum, &#x201C;<a href="https://www.guggenheim.org/artwork/artist/frantisek-kupka" target="_blank" rel="noopener">Franti&#x0161;ek Kupka</a>,&#x201D; Collection Online. Accessed May 2026.</li>      
       <li id="src-7">Solomon R. Guggenheim Museum, &#x201C;<a href="https://www.guggenheim.org/exhibition/gutai-splendid-playground" target="_blank" rel="noopener">Gutai: Splendid Playground</a>,&#x201D; Exhibition Overview. Accessed May 2026.</li>
       <li id="src-8">Malcolm Daniel, &#x201C;<a href="https://www.metmuseum.org/toah/hd/phpt/hd_phpt.htm" target="_blank" rel="noopener">Photography and the Art of Painting</a>,&#x201D; <em>Heilbrunn Timeline of Art History</em> (The Metropolitan Museum of Art, 2004).</li>
       <li id="src-9">The Museum of Modern Art, &#x201C;<a href="https://www.moma.org/collection/terms/dada" target="_blank" rel="noopener">Dada</a>,&#x201D; MoMA Collection Terms.</li>
       <li id="src-10">Frances Stonor Saunders, &#x201C;<a href="https://www.independent.co.uk/news/world/modern-art-was-cia-weapon-1578808.html" target="_blank" rel="noopener">Modern art was CIA 'weapon'</a>,&#x201D; <em>The Independent</em>, October 21, 1995.</li>
-      <li id="src-11">Okwui Enwezor et al., eds., <em>Postwar: Art Between the Pacific and the Atlantic, 1945-1965</em> (Prestel, 2016).</li>
+      <li id="src-11">Janet Byrne, <em>Renaissance Ornament Prints and Drawings</em> (The Metropolitan Museum of Art, 1981).</li>
+      <li id="src-12">Alexandra Bardon, &#x201C;<a href="https://www.lindenwood.edu/blog/the-renaissance-art-period-history-effects-and-influential-artists/" target="_blank" rel="noopener">Renaissance Art: History, Impact &amp; Influential Artists</a>,&#x201D; Lindenwood University, October 2023.</li>
+      <li id="src-13">Esperança Camara, &#x201C;<a href="https://smarthistory.org/a-beginners-guide-to-baroque-art/" target="_blank" rel="noopener">Baroque Art, an Introduction</a>,&#x201D; Smarthistory, 2015.</li>
+      <li id="src-14">Christin Geall, &#x201C;<a href="https://cultivatedbychristin.substack.com/p/the-grammar-of-ornament" target="_blank" rel="noopener">The Grammar of Ornament</a>,&#x201D; <em>Cultivated by Christin</em>, June 2024.</li>
+      <li id="src-15">Council on Foreign Relations, &#x201C;<a href="https://education.cfr.org/learn/reading/what-are-causes-and-consequences-industrialization" target="_blank" rel="noopener">What Are the Causes and Consequences of Industrialization?</a>&#x201D; CFR Education, October 2022.</li>
+      <li id="src-16">Okwui Enwezor et al., eds., <em>Postwar: Art Between the Pacific and the Atlantic, 1945-1965</em> (Prestel, 2016).</li>
     </ol>
+  </div>
+
+  <div class="note-link-block">
+    <a href="note.html">
+      <span class="nl-label">Methodological note</span>
+      <span class="nl-title">Note on Data <span class="nl-arrow">→</span></span>
+    </a>
   </div>
 
 </article>
 
 <footer class="credit">
-  <div>View · <a href="https://observablehq.com/@jisung/subject-matter-western-art@507" target="_blank" rel="noopener">Original Notebook On ObservableHQ</a></div>
+  <div>View · <a href="https://observablehq.com/@jisung/subject-matter-western-art@525" target="_blank" rel="noopener">Original Notebook On ObservableHQ</a></div>
   <div>Data · <a href="https://github.com/NationalGalleryOfArt/opendata/tree/main/data" target="_blank" rel="noopener">National Gallery of Art Open Data</a></div>
 </footer>
 
+<script>
+function toggleNonrepCase(btn) {
+  var el = btn.closest('.collapse-case');
+  var isOpen = el.dataset.open !== 'true';
+  el.dataset.open = isOpen;
+  btn.setAttribute('aria-expanded', isOpen);
+}
+</script>
+
 <script type="module">
   import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@5/dist/runtime.js";
-  import define from "https://api.observablehq.com/@jisung/subject-matter-western-art@507.js?v=4";
+  import define from "https://api.observablehq.com/@jisung/subject-matter-western-art@525.js?v=4";
   new Runtime().module(define, name => {
     if (name === "stackedAreaSubjectMatter") return new Inspector(document.querySelector("#observablehq-stackedAreaSubjectMatter-055d216f"));
     if (name === "smallMultiplesSubject") return new Inspector(document.querySelector("#observablehq-smallMultiplesSubject-055d216f"));
