@@ -799,6 +799,49 @@
     .masthead { padding: 14px 20px; flex-wrap: wrap; gap: 8px; }
     .pullquote { padding-left: 20px; margin-left: 0; margin-right: 0;}
   }
+
+  /* note view*/
+  .note-section {
+    max-width: 64ch;
+    margin: 56px auto 0;
+  }
+  .note-section h2 {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* masthead link*/
+  .masthead .nav-back {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .masthead .nav-back:hover { color: var(--ink); border-color: var(--ink); }
+  .masthead .nav-back::before { content: "← "; }
+
+  .view--hidden { display: none !important; }
+  @keyframes viewFadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes viewFadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+  }
+  .view--entering { animation: viewFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  .view--leaving  { animation: viewFadeOut 0.28s ease both; }
 </style>
 </head>
 <body>
@@ -809,10 +852,12 @@
     <span>Studies in the Collection</span>
   </div>
   <div class="meta">
-    <a href="note.html" class="masthead-link">Note</a>
+    <a href="#" class="masthead-link" id="nav-to-note">Note</a>
+    <a href="#" class="nav-back view--hidden" id="nav-to-main">Return to Article</a>
   </div>
 </header>
 
+<div id="view-main">
 <section class="hero">
   <div class="eyebrow"><span class="dot"></span>An analysis of NGA-catalogued artworks · 1400s–2000s</div>
   <h1 class="title">How has the subject matter of <em>Western art</em> evolved across time and traditions?</h1>
@@ -1305,6 +1350,13 @@
 
   <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
 
+   <div class="note-link-block">
+    <a href="#" id="note-link-btn">
+      <span class="nl-label">Methodological note</span>
+      <span class="nl-title">Note on Data <span class="nl-arrow">→</span></span>
+    </a>
+  </div>
+
   <div class="sources">
     <h3>Sources</h3>
     <ol>
@@ -1327,19 +1379,126 @@
     </ol>
   </div>
 
-  <div class="note-link-block">
-    <a href="note.html">
-      <span class="nl-label">Methodological note</span>
-      <span class="nl-title">Note on Data <span class="nl-arrow">→</span></span>
-    </a>
-  </div>
-
 </article>
+</div><!-- #view-main -->
+
+<div id="view-note" class="view--hidden">
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span>Methodological Note</div>
+    <h1 class="title">Note on Data</h1>
+  </section>
+  <article>
+
+    <div class="note-section">
+      <h2>Sources &amp; Construction</h2>
+    </div>
+
+    <div class="prose">
+      <p>The dataset was extracted from joining two sources, <em>objects.csv</em> and <em>objects_terms.csv</em>, from the National Gallery of Art&#x2019;s open data. <em>objects.csv</em> contains one row per object (144,192 total) with standard metadata&#x2014;title, classification, medium, creation date, and so on. <em>objects_terms.csv</em> contains curated tags assigned by NGA cataloguers (568,518 total, since each object can carry multiple tags) describing the theme, school, keywords, and other attributes.</p>
+      <p>The two were joined on object ID, keeping only works that had both a theme tag and a school tag. Minor themes that collectively accounted for less than 10% of tagged works were dropped to keep the analysis focused. The final dataset contains 58,234 rows representing 51,842 unique objects&#x2014;some works carry multiple theme tags&#x2014;spanning the 1400s to 2000s.</p>
+    </div>
+
+    <div class="note-section">
+      <h2>What Was Lost</h2>
+    </div>
+
+    <div class="prose">
+      <p>The primary losses from the original data were prints&#x2014;of which only 40% had theme coverage&#x2014;and Index of American Design objects, which had just 9% theme coverage overall. Specifically, the final dataset focuses on paintings, drawings, sculptures, and photographs, where cataloguing was most complete.</p>
+    </div>
+
+    <div class="note-section">
+      <h2>Limitations</h2>
+    </div>
+
+    <div class="prose">
+      <p>The dataset is still sound for analysis, because the objects that were lost are not random. Inherently, what was dropped were works the NGA&#x2019;s own cataloguers had not fully classified by theme. This likely means they are works where the subject matter is ambiguous, not yet reviewed, or not applicable. The surviving objects are the ones the gallery itself considers well-described.</p>
+      <p>Given the datasets provided by the NGA, it is impossible to remove all limitations created by each object in the gallery not having a theme or school tag. Consequently, some skewing and small inaccuracies cannot be resolved given the research question and the nature of the NGA datasets.</p>
+    </div>
+
+    <div class="ornament"><span class="line"></span><span class="diamond"></span><span class="line"></span></div>
+
+  </article>
+</div><!-- #view-note -->
 
 <footer class="credit">
   <div>View · <a href="https://observablehq.com/@jisung/subject-matter-western-art@525" target="_blank" rel="noopener">Original Notebook On ObservableHQ</a></div>
   <div>Data · <a href="https://github.com/NationalGalleryOfArt/opendata/tree/main/data" target="_blank" rel="noopener">National Gallery of Art Open Data</a></div>
 </footer>
+
+<script>
+(function () {
+  var TITLES = {
+    main: 'Subject Matter of Western Art — A Quantitative Survey',
+    note: 'Note on Data — N.G.A. Studies in the Collection'
+  };
+  var URLS = { main: './', note: 'note' };
+
+  var views   = { main: document.getElementById('view-main'), note: document.getElementById('view-note') };
+  var navNote = document.getElementById('nav-to-note');
+  var navBack = document.getElementById('nav-to-main');
+  var noteBtn = document.getElementById('note-link-btn');
+  var current = 'main';
+
+  function updateNav(target) {
+    if (target === 'note') {
+      navNote.classList.add('view--hidden');
+      navBack.classList.remove('view--hidden');
+    } else {
+      navNote.classList.remove('view--hidden');
+      navBack.classList.add('view--hidden');
+    }
+  }
+
+  function navigateTo(target, push) {
+    if (target === current) return;
+    if (push === undefined) push = true;
+    var fromEl = views[current];
+    var toEl   = views[target];
+
+    fromEl.classList.add('view--leaving');
+    fromEl.addEventListener('animationend', function handler() {
+      fromEl.removeEventListener('animationend', handler);
+      fromEl.classList.add('view--hidden');
+      fromEl.classList.remove('view--leaving');
+
+      toEl.classList.remove('view--hidden');
+      toEl.classList.add('view--entering');
+      toEl.addEventListener('animationend', function done() {
+        toEl.removeEventListener('animationend', done);
+        toEl.classList.remove('view--entering');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      current = target;
+      updateNav(target);
+    });
+
+    if (push) {
+      history.pushState({ view: target }, '', URLS[target]);
+      document.title = TITLES[target];
+    }
+  }
+
+  navNote.addEventListener('click', function (e) { e.preventDefault(); navigateTo('note'); });
+  navBack.addEventListener('click', function (e) { e.preventDefault(); navigateTo('main'); });
+  if (noteBtn) noteBtn.addEventListener('click', function (e) { e.preventDefault(); navigateTo('note'); });
+
+  window.addEventListener('popstate', function (e) {
+    var target = (e.state && e.state.view) ? e.state.view : 'main';
+    navigateTo(target, false);
+    document.title = TITLES[target];
+    updateNav(target);
+  });
+
+  var path = window.location.pathname;
+  if (path.slice(-5) === '/note' || path.slice(-10) === '/note.html') {
+    views.note.classList.remove('view--hidden');
+    views.main.classList.add('view--hidden');
+    current = 'note';
+    updateNav('note');
+  }
+}());
+</script>
 
 <script>
 function toggleNonrepCase(btn) {
